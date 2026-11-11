@@ -1,0 +1,1055 @@
+@charset "utf-8";
+
+/* --------------------------------------------------
+ * 全体リセット & box-sizing
+ * -------------------------------------------------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------
+ * 変数定義 (:root)
+ * -------------------------------------------------- */
+:root {
+  /* フォント定義 */
+  --font-en: 'Nunito', sans-serif;
+  --font-jp: 'Zen Maru Gothic', sans-serif;
+  --font-family-base: var(--font-en), var(--font-jp);
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  --font-base: 16px;
+
+  /* サイズ定義 */
+  --width-max: 1420px;
+  --width-content-narrow: 1000px;
+
+  /* カラー定義 */
+  --color-bg: #F9C1CF;          /* ミニー風淡色ピンク */
+  --color-frame: #F8F1F3;       /* 古紙風カラー */
+  --color-text: #4C2F2D;        /* ココアブラウン */
+  --color-white: #FFFFFF;
+}
+
+/* --------------------------------------------------
+ * ベース設定
+ * -------------------------------------------------- */
+html {
+  font-size: var(--font-base);
+}
+
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+/* --------------------------------------------------
+ * ヒーローエリア（ファーストビュー）
+ * -------------------------------------------------- */
+.hero {
+  width: 100%;
+  max-width: var(--width-max);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-title {
+  text-align: center;
+  display: inline-block;
+}
+
+/* メイン画像：古紙カラーの楕円フレームデザイン */
+.site-title img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  
+  /* 古紙風背景カラー */
+  background-color: var(--color-frame);
+  
+  /* ポップでニュアンスのある有機的楕円 */
+  border-radius: 58% 42% 55% 45% / 48% 52% 48% 52%;
+  
+  /* イラストとフレーム枠の間の余白 */
+  padding: 30px 45px 30px 35px;
+  
+  /* ココアブラウンの影で浮遊感を演出 */
+  box-shadow: 0 12px 32px rgba(76, 47, 45, 0.12);
+  
+  /* GSAPアニメーション・スムーズ移行用 */
+  will-change: transform;
+  transition: border-radius 0.6s ease;
+}
+
+/* ホバー時に優しく形が変わるインタラクション */
+.site-title img:hover {
+  border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+}
+
+/* --------------------------------------------------
+ * イントロダクションセクション
+ * -------------------------------------------------- */
+.intro-section {
+  position: relative; 
+  width: 100%;
+  padding: 200px 20px 200px;
+  background-color: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible; /* うさぎが少しはみ出ても切れないようにする */
+}
+
+.intro-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ポットウサギの装飾コンテナ（最初から表示・右上の境界線付近） */
+.intro-bunny {
+  position: absolute;
+  top: -90px;   /* セクションの上からはみ出させ、FVの底面とイントロをまたぐ位置に */
+  right: 5%;    /* 画面の右側にゆとりを持たせて配置 */
+  width: 300px; /* しっかり存在感のある大きさ */
+  z-index: 10;  /* 常に手前に表示 */
+  /* opacity: 0 は外し、最初から表示状態にする */
+  filter: drop-shadow(0 12px 24px rgba(76, 47, 45, 0.12));
+}
+
+.intro-bunny img {
+  width: 100%;
+  height: auto;
+}
+
+.intro-content {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.intro-title {
+  font-size: 1.8rem;
+  color: var(--color-text);
+  margin-bottom: 24px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.intro-text {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 2.0;
+}
+
+/* スマホ表示用の微調整 */
+@media (max-width: 768px) {
+  .hero {
+    padding: 20px 16px;
+  }
+  
+  .site-title img {
+    padding: 20px 24px;
+    border-radius: 50% 50% 48% 52% / 40% 60% 40% 60%;
+  }
+
+  .intro-section {
+    padding: 100px 16px 80px;
+  }
+
+  /* スマホでのポットうさぎの位置・サイズ調整 */
+  .intro-bunny {
+    width: 140px;
+    top: -60px;
+    right: 16px;
+  }
+
+  .intro-title {
+    font-size: 1.4rem;
+  }
+
+  .intro-text {
+    font-size: 0.9rem;
+  }
+}
+/* ==========================================================================
+   架空の小説家＆ストーリー セクション (Authors & Stories)
+   ========================================================================== */
+
+/* Google Fontsの読み込み（すでにHTML側で読み込んでいる場合は不要です） */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Noto+Serif+JP:wght@300;400;600&display=swap');
+
+/* ルート変数定義（カラー・フォント） */
+:root {
+  --authors-bg: #ffffff;
+  --authors-text-main: #2b2b2b;
+  --authors-text-sub: #666666;
+  --authors-accent-gold: #c5a059;
+  --authors-card-bg: #fafafa;
+  --authors-font-serif: "Noto Serif JP", "Shippori Mincho", YuMincho, "游明朝", serif;
+  --authors-font-en: "Cinzel", "Times New Roman", serif;
+}
+
+/* セクション全体のベース */
+.authors-section {
+  width: 100%;
+  background-color: var(--authors-bg);
+  padding: 100px 20px;
+  box-sizing: border-box;
+  color: var(--authors-text-main);
+  font-family: var(--authors-font-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* コンテナ（最大幅 1200px） */
+.authors-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* セクションヘッダー */
+.authors-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.authors-subtitle-en {
+  display: block;
+  font-family: var(--authors-font-en);
+  font-size: 0.95rem;
+  letter-spacing: 0.25em;
+  color: var(--authors-accent-gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.authors-title {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  margin: 0;
+  color: var(--authors-text-main);
+  line-height: 1.4;
+}
+
+/* グリッドレイアウト（PC 3列） */
+.authors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  align-items: stretch;
+}
+
+/* 作家カード＆リンク */
+.author-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  height: 100%;
+}
+
+.author-card {
+  background-color: var(--authors-card-bg);
+  border-radius: 8px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.author-card-link:hover .author-card {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* 書籍表紙画像エリア */
+.book-cover-wrapper {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 1 / 1.42;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 
+              0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.35s ease;
+}
+
+.author-card-link:hover .book-cover-img {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 
+              0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 作家情報・ストーリーエリア */
+.author-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.book-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin: 0 0 8px 0;
+  text-align: center;
+  color: var(--authors-text-main);
+text-align: center; /* ← 追加：タイトルを中央揃え */
+}
+
+.author-name {
+  font-size: 0.9rem;
+  color: #888888;
+  margin: 0 0 20px 0;
+  letter-spacing: 0.05em;
+  text-align: center; /* ← 追加：作者名を中央揃え */
+}
+
+.book-story {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--authors-text-sub);
+  margin: 0 0 24px 0;
+  text-align: justify;
+  font-weight: 300;
+  flex-grow: 1;
+}
+
+/* 詳細リンク用テキスト矢印 */
+.read-more {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--authors-text-main);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}
+
+.read-more-arrow {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.author-card-link:hover .read-more {
+  color: var(--authors-accent-gold);
+}
+
+.author-card-link:hover .read-more-arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   レスポンシブ対応（タブレッド・スマートフォン）
+   ========================================================================== */
+
+/* タブレットサイズ（〜992px）: 2列表示 */
+@media screen and (max-width: 992px) {
+  .authors-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+/* スマホサイズ（〜640px）: 1列表示 */
+@media screen and (max-width: 640px) {
+  .authors-section {
+    padding: 60px 16px;
+  }
+
+  .authors-header {
+    margin-bottom: 40px;
+  }
+
+  .authors-title {
+    font-size: 1.6rem;
+  }
+
+  .authors-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .author-card {
+    padding: 30px 20px;
+  }
+
+  .book-cover-wrapper {
+    max-width: 180px;
+    margin-bottom: 24px;
+  }
+
+  .book-title {
+    font-size: 1.25rem;
+  }
+}
+/* ==========================================================================
+   架空の小説家＆ストーリー セクション (Story Section)
+   ========================================================================== */
+
+/* セクション全体のベース */
+.story-section {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 200px 20px 90px; /* ← 上パディングを 90px から 160px に増やして位置を下げました */
+  box-sizing: border-box;
+  overflow: visible;
+}
+/* 時計ウサギ（左上境界線付近に配置） */
+.story-bunny {
+  position: absolute;
+  top: -170px;   /* 上のセクション境界線をまたぐ位置 */
+  left: 5%;     /* 画面の左側に配置 */
+  width: 250px; /* potrabbitと同じサイズ */
+  z-index: 10;
+  filter: drop-shadow(0 12px 24px rgba(76, 47, 45, 0.12));
+}
+
+.story-bunny img {
+  width: 100%;
+  height: auto;
+}
+
+/* コンテナ（最大幅 1200px） */
+.story-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* セクションヘッダー */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sub-title {
+  display: block;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: #999999;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.main-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #2b2b2b;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* 3列レイアウト（PC） */
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  align-items: stretch;
+}
+
+/* 作品カード（全体のリンク枠） */
+.story-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.story-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+}
+
+/* 書籍表紙画像エリア */
+.book-image-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.book-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* 書籍情報エリア */
+.book-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.book-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin: 0 0 6px 0;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+.author-name {
+  font-size: 0.9rem;
+  color: #888888;
+  margin: 0 0 20px 0;
+  letter-spacing: 0.05em;
+}
+
+/* 「こんな人におすすめ」ボックス */
+.recommend-box {
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-left: 3px solid #c5a059; /* 上品なゴールドのアクセントライン */
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+
+.recommend-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #c5a059;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.recommend-target {
+  font-size: 0.825rem;
+  color: #4a4a4a;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* あらすじテキスト */
+.story-text {
+  font-size: 0.875rem;
+  color: #666666;
+  line-height: 1.7;
+  margin: 0;
+  letter-spacing: 0.03em;
+  font-weight: 300;
+}
+
+/* ==========================================================================
+   レスポンシブ設定（タブレット・スマホ）
+   ========================================================================== */
+
+/* タブレット（〜992px）: 2列 */
+@media screen and (max-width: 992px) {
+  .story-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+/* スマホ（〜640px）: 1列 */
+@media screen and (max-width: 640px) {
+  .story-section {
+    padding: 60px 16px;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .main-title {
+    font-size: 1.5rem;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .story-card {
+    padding: 24px 18px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .story-section {
+    padding: 100px 16px 60px;
+  }
+
+  .story-bunny {
+    width: 140px;
+    top: -60px;
+    left: 16px;
+  }
+}
+/* ==========================================================================
+   読者の声（感想・レビュー）セクション (Review Section)
+   ========================================================================== */
+
+/* セクション全体（ピンク背景＆見出し共通化） */
+.review-section {
+  width: 100%;
+  background-color: var(--color-bg); /* ファーストビューと同じピンク */
+  padding: 140px 20px;
+  box-sizing: border-box;
+  color: var(--color-text);
+}
+
+.review-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* レビューカード一覧（縦並び） */
+.review-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* レビュー白枠カード */
+.review-card {
+  position: relative;
+  z-index: 2; /* カードを前面にする */
+  background-color: var(--color-white);
+  border-radius: 12px;
+  padding: 32px 36px;
+  box-shadow: 0 8px 24px rgba(76, 47, 45, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.review-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f2ecee;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.review-book-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.05em;
+}
+
+.review-user-info {
+  font-size: 0.85rem;
+  color: #8c7371;
+}
+
+.review-comment {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--color-text);
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 640px) {
+  .review-section {
+    padding: 80px 16px;
+  }
+  
+  .review-card {
+    padding: 24px 20px;
+  }
+  
+  .review-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+/* 感想カード内の購入・詳細導線 */
+.review-buy-link {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed #f0e8ea;
+  text-align: right; /* 右寄せで自然に目を引く */
+}
+
+.review-buy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #c5a059; /* 上品なゴールド調 */
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+}
+
+.review-buy-btn:hover {
+  color: var(--color-text);
+  transform: translateX(3px);
+}
+
+.buy-arrow {
+  font-size: 1rem;
+  line-height: 1;
+}
+/* 感想セクションのコンテナに基準位置を設定 */
+.review-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* フェードイン用のお花イラスト */
+.review-flower-fade {
+  position: absolute;
+  /* 右下へ移動：カードの底面＆右枠から外へ少しはみ出させる */
+  bottom: -420px;     /* カード群の下のピンク背景領域へ下げる */
+  right: -100px;      /* カードの右端よりも外側へ寄せる */
+  width: 500px;      /* テキストを邪魔しないようサイズを少し小ぶりに調整 */
+  z-index: 3;        /* カードの後ろに配置 */
+  opacity: 0;        /* 初期状態は透明 */
+  pointer-events: none;
+  filter: drop-shadow(0 8px 16px rgba(76, 47, 45, 0.06));
+}
+
+.review-flower-fade img {
+  width: 100%;
+  height: auto;
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 768px) {
+  .review-flower-fade {
+    width: 140px;
+    bottom: -40px;
+    right: -10px;
+  }
+}
+/* ==========================================================================
+   裏側：物書きオンナ（ファーストビュー）
+   ========================================================================== */
+
+/* 1. ヒーローエリア全体（背景真っ黒＆中央寄せ） */
+.hero-ura {
+  position: relative; /* または absolute で重ねる */
+  width: 100%;
+  max-width: var(--width-max);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  z-index: 2; /* 文字より上に重ねる */
+}
+
+/* 2. タイトルコンテナ（表側と同構造） */
+.hero-ura .site-title {
+  text-align: center;
+  display: inline-block;
+}
+
+/* 3. メイン画像：ダークフレーム＆落ち着いた夜のトーン */
+.hero-ura .site-title img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  
+  /* ダークなフレーム背景色（深みのある黒〜チャコール） */
+  background-color: #121216;
+  
+  /* 有機的な楕円シェイプはそのまま活かす */
+  border-radius: 58% 42% 55% 45% / 48% 52% 48% 52%;
+  
+  /* 画像とフレーム枠の間の余白 */
+  padding: 30px 45px 30px 35px;
+  
+  /* ★サイバーな青白いネオンを外し、重厚で静かな影に変更 */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+  
+  /* スムーズな変形用 */
+  will-change: transform, border-radius;
+  transition: border-radius 0.6s ease, box-shadow 0.6s ease;
+}
+
+/* 4. ホバー時の光る演出をなくし、静かに浮かぶ上品なインタラクションへ変更 */
+.hero-ura .site-title img:hover {
+  border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.9);
+}
+
+/* 5. スマホ表示用の調整 */
+@media (max-width: 768px) {
+  .hero-ura {
+    padding: 20px 16px;
+  }
+  
+  .hero-ura .site-title img {
+    padding: 20px 24px;
+    border-radius: 50% 50% 48% 52% / 40% 60% 40% 60%;
+  }
+}
+/* === チケット全体のラッパー（左端に一部はみ出させる設定はそのまま） === */
+.invitation-ticket-wrap {
+  position: fixed;
+  bottom: 70px;
+  left: -410px; /* お使いの環境に合わせて調整中の数値 */
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  pointer-events: none; /* 親全体の不要な判定を消す */
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.invitation-ticket-wrap:hover {
+  transform: translateX(20px);
+}
+
+/* チケット本体（文字を重ねる基準にするため position: relative を指定） */
+.ticket-body {
+  position: relative;
+  width: 450px;
+  cursor: pointer;
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.3));
+  pointer-events: auto; /* チケット本体はクリック可能に */
+}
+
+.ticket-body img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* チケットの上に文字を重ねるレイヤー（位置と大きさの調整） */
+.ticket-text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 45%; /* チケットの中央付近に合わせる */
+  transform: translate(-50%, -50%);
+  width: 65%; /* チケットからはみ出さないように幅を調整 */
+  text-align: left;
+  pointer-events: none;
+}
+
+/* タイピングされる文字のサイズ */
+.typed-text {
+  font-family: var(--font-jp);
+  font-size: 1.2rem; /* チケットの大きさに合わせて文字を少し小さくする */
+  color: #9a9898;    /* チケットの上で読みやすい色（ダークグレーなど） */
+  font-weight: bold;
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+}
+
+/* 入室リンク */
+.enter-writer-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #8A2B43; /* チケット上で映える色 */
+  text-decoration: none;
+  font-family: monospace;
+  letter-spacing: 0.05em;
+  pointer-events: auto; /* リンクはクリックできるように有効化 */
+  transition: color 0.3s ease;
+}
+
+.enter-writer-link:hover {
+  color: #000;
+}
+.site-footer {
+  width: 100%;
+  background-color: var(--color-bg); /* ピンクの背景に自然に馴染ませる */
+  padding: 40px 20px 60px;
+  text-align: center;
+  border-top: 1px solid rgba(76, 47, 45, 0.1); /* 控えめな区切り線 */
+  color: var(--color-text);
+}
+
+.footer-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footer-company {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.footer-message {
+  font-size: 0.825rem;
+  color: #7a5c5a;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.copyright {
+  font-size: 0.75rem;
+  color: #9c7e7c;
+  letter-spacing: 0.08em;
+  font-family: var(--font-en);
+}
+/* ==========================================================================
+   hero-ura 本格グリッチ加工
+   ========================================================================== */
+
+.hero-ura .site-title {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.hero-ura .site-title img {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-ura .site-title.is-glitching img {
+  animation: heavy-glitch 0.2s steps(2, start) infinite;
+  filter: drop-shadow(-6px 0 0 rgba(255, 230, 0, 0.9))   /* 鮮やかなネオンイエロー */
+          drop-shadow(6px 0 0 rgba(0, 240, 255, 0.9))    /* クールなシアン（水色） */
+          contrast(150%);
+}
+
+/* 激しいグリッチのキーフレーム */
+@keyframes heavy-glitch {
+  0% {
+    transform: translate(0, 0);
+    clip-path: inset(0);
+  }
+  20% {
+    transform: translate(-8px, 4px);
+    clip-path: inset(45% 0 10% 0);
+  }
+  40% {
+    transform: translate(6px, -4px);
+    clip-path: inset(20% 0 20% 0);
+  }
+  60% {
+    transform: translate(-4px, 2px);
+    clip-path: inset(60% 0 15% 0);
+  }
+  80% {
+    transform: translate(8px, -2px);
+    clip-path: inset(85% 0 10% 0);
+  }
+  100% {
+    transform: translate(0, 0);
+    clip-path: inset(0);
+  }
+}
+/* --------------------------------------------------
+ * ベース設定
+ * -------------------------------------------------- */
+html {
+  font-size: var(--font-base);
+}
+
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* 裏側ページだけ黒にする */
+body.ura-page {
+  background-color: #000000;
+  color: #f0f0f0;
+  overflow-x: hidden;
+}
+/* イントロセクション：最初は透明にしておく */
+.intro-urasection {
+  position: absolute; /* 画面の同じ座標に固定 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+  z-index: 1; /* 画像の下に隠しておく */
+}
+
+.intro-uracontainer {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+/* 文字の初期状態（透明 ＆ 少し下） */
+.intro-uracontent {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.intro-uratitle {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 24px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.intro-uratext {
+  font-size: 1rem;
+  color: #b0b0b0;
+  line-height: 2.2;
+  letter-spacing: 0.03em;
+}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>ワタシ 本読み女</title>
+  <meta name="description" content="ワタシ 本読み女のホームページです。">
+  
+  <!-- スタイルシート -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/jquery.bxslider.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/lightbox.min.css">
+  
+  <!-- Webフォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="icon" href="images/#X" type="image/svg+xml">
+</head>
+
+<body>
+    <!-- === 裏側へのチケット導線（左下固定） === -->
+<div id="invitation-ticket" class="invitation-ticket-wrap">
+    <div class="ticket-body" id="ticket-btn">
+        <img src="images/ticket01.png" alt="インビテーションチケット">
+        
+        <!-- チケットの画像の上に直接重ねるテキストエリア -->
+        <div class="ticket-text-overlay">
+            <p class="typed-text" id="typed-text"></p>
+            <a href="index_ura.html" class="enter-writer-link" id="enter-link" style="opacity: 0;">▶ 物書きオンナの部屋へ入室する</a>
+        </div>
+    </div>
+</div>
+
+    <!-- ファーストビュー（メインビジュアル）のコンテナ -->
+    <header class="hero">
+        <h1 class="site-title">
+            <img src="images/main-title.jpg" alt="ワタシ、本読み女">
+        </h1>
+    </header>
+
+    <!-- イントロダクションセクション -->
+    <section class="intro-section">
+        <!-- ページを開いた瞬間に右上（境界線上）に配置し、ゆらゆら動くうさぎ -->
+        <div class="intro-bunny">
+            <img src="images/potrabbit.png" alt="ポットに入った白うさぎ">
+        </div>
+
+        <div class="intro-container">
+            <div class="intro-content">
+                <h2 class="intro-title">日常のざわめきを脱ぎ捨てて、物語の奥へ。</h2>
+                <p class="intro-text">
+                    『ワタシ、本読み女』は、スマホの通知音や慌ただしい日常から少しだけ離れて、<br>
+                    ページをめくる音と活字の匂いに包まれるための場所。
+                </p>
+            </div>
+        </div>
+    </section>
+
+<!-- 架空の小説家＆ストーリー セクション -->
+<section class="story-section">
+    <div class="story-bunny">
+        <img src="images/rabbitwatch.png" alt="時計を持ったウサギ">
+    </div>
+    <div class="story-container">
+        
+        <!-- セクションの見出し -->
+        <div class="section-header">
+            <span class="sub-title">Featured Authors & Stories</span>
+            <h2 class="main-title">物語と作家たち</h2>
+        </div>
+
+        <!-- 3列のカードを並べるラッパー -->
+        <div class="story-grid">
+
+            <!-- 1冊目：迷鳥 -->
+            <a href="#x" class="story-card">
+                <div class="book-image-wrap">
+                    <img src="images/meicho.png" alt="『迷鳥』表紙" onerror="this.src='https://placehold.co/400x560/f7f6f2/2b2b2b?text=迷鳥';" />
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">『迷鳥』</h3>
+                    <p class="author-name">佐藤 栞</p>
+                    
+                    <!-- おすすめ枠 -->
+                    <div class="recommend-box">
+                        <span class="recommend-tag">こんな人におすすめ</span>
+                        <p class="recommend-target">自分の居場所や進む道にちょっぴり迷っているあなたへ</p>
+                    </div>
+
+                    <p class="story-text">夕暮れの街で迷い込んだ一匹の鳥。自分自身の居場所を探し求める少女の物語。</p>
+                </div>
+            </a>
+
+            <!-- 2冊目：Transition -->
+            <a href="#x" class="story-card">
+                <div class="book-image-wrap">
+                    <img src="images/Transition.png" alt="『Transition』表紙" onerror="this.src='https://placehold.co/400x560/f4f5f6/334e68?text=Transition';" />
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">『Transition』</h3>
+                    <p class="author-name">Elias Thorne</p>
+
+                    <!-- おすすめ枠 -->
+                    <div class="recommend-box">
+                        <span class="recommend-tag">こんな人におすすめ</span>
+                        <p class="recommend-target">日常から少し離れて、自分を取り戻す静かな時間が欲しいあなたへ</p>
+                    </div>
+
+                    <p class="story-text">忘れ去られた古い図書館で見つけた、自分自身を紡ぎ直すための幻想的な物語。</p>
+                </div>
+            </a>
+
+            <!-- 3冊目：新訳 ハムレット -->
+            <a href="#x" class="story-card">
+                <div class="book-image-wrap">
+                    <img src="images/hamlet.png" alt="『新訳 ハムレット』表紙" onerror="this.src='https://placehold.co/400x560/2c5270/ffffff?text=新訳+ハムレット';" />
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">『新訳 ハムレット』</h3>
+                    <p class="author-name">田中 秀雄</p>
+
+                    <!-- おすすめ枠 -->
+                    <div class="recommend-box">
+                        <span class="recommend-tag">こんな人におすすめ</span>
+                        <p class="recommend-target">古典の名作に挑戦したいけれど、難しそうと感じているあなたへ</p>
+                    </div>
+
+                    <p class="story-text">古典の名作を現代の繊細な感覚で読みやすく再解釈。葛藤と決断の物語。</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+<!-- 読者の声（感想・レビュー）セクション -->
+<section class="review-section">
+    <div class="review-container">
+        
+        <!-- 見出し部分（前のセクションと完全統一） -->
+        <div class="section-header">
+            <span class="sub-title">Reader's Voices</span>
+            <h2 class="main-title">物語に寄せられた声</h2>
+        </div>
+
+        <!-- レビューカード枠（背景白の枠） -->
+        <div class="review-grid">
+
+            <!-- 1冊目：迷鳥の感想 -->
+            <div class="review-card">
+                 <div class="review-card-header">
+                     <h3 class="review-book-title">『迷鳥』を読んで</h3>
+                     <span class="review-user-info">20代女性 / 会社員</span>
+                 </div>
+                 <p class="review-comment">
+                     「どこにも自分の居場所がないような気がしていた日の夜に読みました。主人公の葛藤がまるで自分のことのように思えて、静かに涙がこぼれました。読み終わったあと、少しだけ優しくなれた気がします。」
+                 </p>
+    
+                <!-- ★感想直下の販売・詳細リンク★ -->
+                <div class="review-buy-link">
+                    <a href="#buy-x" class="review-buy-btn">
+                     <span>『迷鳥』を詳しく見る・購入する</span>
+                        <span class="buy-arrow">›</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2冊目：Transitionの感想 -->
+            <div class="review-card">
+                <div class="review-card-header">
+                    <h3 class="review-book-title">『Transition』を読んで</h3>
+                    <span class="review-user-info">30代女性 / フリーランス</span>
+                </div>
+                <p class="review-comment">
+                    「忙しい毎日に追われて忘れかけていた『自分自身の時間』を取り戻せた感覚です。静かな図書館の空気感が画面越しに伝わってきて、読み進めるほどに心が軽くなっていくのを感じました。」
+                </p>
+
+                <!-- ★感想直下の販売・詳細リンク★ -->
+                <div class="review-buy-link">
+                    <a href="#x" class="review-buy-btn">
+                     <span>『Transition』を詳しく見る・購入する</span>
+                        <span class="buy-arrow">›</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3冊目：新訳 ハムレットの感想 -->
+            <div class="review-card">
+                <div class="review-card-header">
+                    <h3 class="review-book-title">『新訳 ハムレット』を読んで</h3>
+                    <span class="review-user-info">10代女性 / 学生</span>
+                </div>
+                <p class="review-comment">
+                    「古典って難しそうと思っていましたが、驚くほどすんなり世界観に入り込めました！登場人物たちの言葉や悩みが今の私と重なる部分がたくさんあって、古典がこんなに身近に感じられたのは初めてです。」
+                </p>
+                <!-- ★感想直下の販売・詳細リンク★ -->
+                <div class="review-buy-link">
+                    <a href="#x" class="review-buy-btn">
+                     <span>『新訳 ハムレット』を詳しく見る・購入する</span>
+                        <span class="buy-arrow">›</span>
+                    </a>
+                </div>
+            </div>
+            <div class="review-flower-fade">
+            <img src="images/flower.png" alt="水彩画のお花">
+        </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <!-- 運営会社名やレーベル名 -->
+    <p class="footer-company">Yotaka Publishing / ヨタカ書房</p>
+    
+    <!-- 控えめなコンセプトコピー -->
+    <p class="footer-message">静寂の真夜中、あなただけのリーディングルーム。</p>
+    
+    <!-- コピーライト -->
+    <p class="copyright">&copy; 2026 Yotaka Publishing. All Rights Reserved.</p>
+  </div>
+</footer>
+
+    <!-- 各種スクリプト読み込み -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
